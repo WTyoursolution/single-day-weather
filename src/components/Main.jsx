@@ -12,7 +12,7 @@ export default function Main() {
     // This function fetches the location data from the API and sets it in the state.
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${key}`
+        `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${key}`
       ); // This fetches the location data from the OpenWeatherMap API.
 
       const data = await response.json(); // This converts the response to JSON.
@@ -33,7 +33,7 @@ export default function Main() {
     async function getWeatherData() {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=imperial`
+          `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=imperial`
         );
         const data = await response.json(); // This converts the response to JSON.
         setWeather(data.list); // This sets the weather data in the state.
