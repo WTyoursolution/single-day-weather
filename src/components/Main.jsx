@@ -54,8 +54,8 @@ export default function Main() {
 
   return (
     <main className="main">
-      <div>
-      <label>
+      <div className="search-container">
+      <label className="label">
         City Name:
         <input
         value = {inputField}
@@ -69,18 +69,23 @@ export default function Main() {
         setCity(inputField);
         getLocationData();
         }}>Search</button>
-      </div>
-      <ul>
+      <ul className="weather-list">
         {weather.map((hour) => (
-          <li key={hour.dt_txt}>
-            <h2>{hour.dt_txt}</h2>
-            <p>
-              <strong>Temp: </strong>
+          <li key={hour.dt_txt} className="weather-card">
+            <h2 className="hour">{hour.dt_txt}</h2>
+            <img
+    src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
+    alt={hour.weather[0].description}
+    className="weather-icon"
+  />
+            <p className="temp-number">
+              <strong className="temp">Temp: </strong>
               {hour.main.temp}
             </p>
           </li>
         ))}
       </ul>
+      </div>
     </main>
   );
 }
