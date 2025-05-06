@@ -2,6 +2,7 @@ import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import DotenvWebpackPlugin from "dotenv-webpack";
+import webpack from 'webpack';
 
 export default (_env, argv) => {
   const prod = argv.mode === "production";
@@ -53,7 +54,8 @@ export default (_env, argv) => {
       ],
     },
     plugins: [
-      new DotenvWebpackPlugin(),
+      new webpack.DefinePlugin({"process.env.REACT_APP_WEATHER_KEY": JSON.stringify(process.env.REACT_APP_WEATHER_KEY)}), //prod only
+      new DotenvWebpackPlugin(), //local dev only
       new HtmlWebpackPlugin({ template: "public/index.html" }),
       !prod && new ReactRefreshWebpackPlugin(),
     ].filter(Boolean),
